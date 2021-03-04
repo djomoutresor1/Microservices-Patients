@@ -1,4 +1,4 @@
-package components.model;
+package com.nbp.bear.components.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Data
 @ToString

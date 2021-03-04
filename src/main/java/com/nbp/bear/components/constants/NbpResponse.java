@@ -1,4 +1,4 @@
-package components.constants;
+package com.nbp.bear.components.constants;
 
 public class NbpResponse {
 

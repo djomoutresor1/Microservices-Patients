@@ -1,4 +1,4 @@
-package components.example.patients;
+package com.nbp.bear.components.example.patients;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

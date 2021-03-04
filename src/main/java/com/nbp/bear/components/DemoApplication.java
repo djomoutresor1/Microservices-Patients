@@ -1,18 +1,14 @@
-package components;
+package com.nbp.bear.components;
 
-import components.model.NbpDiseases;
-import components.model.NbpPatient;
-import components.repository.NbpMaladieRepository;
-import components.repository.NbpPatientRepository;
+import com.nbp.bear.components.model.NbpDiseases;
+import com.nbp.bear.components.model.NbpPatient;
+import com.nbp.bear.components.repository.NbpMaladieRepository;
+import com.nbp.bear.components.repository.NbpPatientRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @SpringBootApplication
 public class DemoApplication {

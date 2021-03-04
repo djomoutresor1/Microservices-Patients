@@ -1,6 +1,6 @@
-package components.repository;
+package com.nbp.bear.components.repository;
 
-import components.model.NbpPatient;
+import com.nbp.bear.components.model.NbpPatient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
