@@ -17,13 +17,12 @@ import javax.persistence.*;
 public class NbpDiseases {
 
     @Id
-    @GeneratedValue//(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer diseaseId;
-
     private String nameDiseases;
     private String descDiseases;
 
     @ManyToOne
-    @JoinColumn(name="diseaseId")
+    @JoinColumn(name="diseaseId", insertable = false, updatable = false)
     private NbpPatient nbpPatient;
 }

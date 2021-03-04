@@ -1,12 +1,13 @@
 package components.model;
 
-import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 @Table(name = "NBP_PATIENTS")
 public class NbpPatient {
     @Id
-    @GeneratedValue//(strategy = GenerationType.IDENTITY)
+    @GeneratedValue //(strategy = GenerationType.IDENTITY)
     @NotNull()
     private Integer patientId;
     private String patientCode;
@@ -34,8 +35,8 @@ public class NbpPatient {
     private String patientEmail;
     private BigInteger patientPhoneNumber;
     private BigInteger patientFixNumber;
-    private String patientDiseases;
-    @OneToMany(targetEntity=NbpPatient.class, mappedBy="nbpPatient",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+ //   private String patientDiseases;
+    @OneToMany(targetEntity=NbpPatient.class, mappedBy="diseases",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<NbpDiseases> diseases;
 
 }

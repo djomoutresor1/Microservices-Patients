@@ -73,7 +73,7 @@ public class NbpPatientService {
           existingPatient.setPatientEmail(nbpPatient.getPatientEmail());
           existingPatient.setPatientPhoneNumber(nbpPatient.getPatientPhoneNumber());
           existingPatient.setPatientFixNumber(nbpPatient.getPatientFixNumber());
-          existingPatient.setPatientDiseases(nbpPatient.getPatientDiseases());
+  //        existingPatient.setPatientDiseases(nbpPatient.getPatientDiseases());
 
           nbpPatientRepository.save(existingPatient);
           return new ResponseEntity<Object>(existingPatient, HttpStatus.OK);
