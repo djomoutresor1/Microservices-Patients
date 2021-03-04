@@ -17,7 +17,7 @@ public class NbpPatientController {
     @Autowired
     private NbpPatientService nbpPatientService;
 
-    @PostMapping("/addPatient")
+    @PostMapping("/addPatient/{patientId}")
     public NbpPatient addPatient(@RequestBody NbpPatient nbpPatient) {
         return nbpPatientService.savePatient(nbpPatient);
     }
@@ -43,7 +43,7 @@ public class NbpPatientController {
     }
 
 
-    @PutMapping("/update")
+    @PutMapping("/update/{patientId}")
     public ResponseEntity<Object> updatePatient(@RequestBody NbpPatient nbpPatient){
         return nbpPatientService.NbpUpdatePatientService(nbpPatient);
     }
