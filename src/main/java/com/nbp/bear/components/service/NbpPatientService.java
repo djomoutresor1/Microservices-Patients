@@ -1,8 +1,8 @@
-package components.service;
+package com.nbp.bear.components.service;
 
-import components.constants.NbpResponse;
-import components.model.NbpPatient;
-import components.repository.NbpPatientRepository;
+import com.nbp.bear.components.constants.NbpResponse;
+import com.nbp.bear.components.model.NbpPatient;
+import com.nbp.bear.components.repository.NbpPatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

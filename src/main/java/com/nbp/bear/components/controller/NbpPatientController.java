@@ -1,7 +1,7 @@
-package components.controller;
+package com.nbp.bear.components.controller;
 
-import components.model.NbpPatient;
-import components.service.NbpPatientService;
+import com.nbp.bear.components.model.NbpPatient;
+import com.nbp.bear.components.service.NbpPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

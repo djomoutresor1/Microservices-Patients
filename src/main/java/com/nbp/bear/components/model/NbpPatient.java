@@ -1,4 +1,4 @@
-package components.model;
+package com.nbp.bear.components.model;
 
 
 import lombok.AllArgsConstructor;
@@ -9,7 +9,6 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
