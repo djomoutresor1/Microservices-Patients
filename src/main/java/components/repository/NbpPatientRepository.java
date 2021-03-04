@@ -10,7 +10,6 @@ import java.util.Optional;
 public interface NbpPatientRepository extends JpaRepository<NbpPatient,Integer> {
 
     Optional<NbpPatient> findByPatientName(String patientName);
-    Optional<NbpPatient> findById(String patientId);
 }
 
 

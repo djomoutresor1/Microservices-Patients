@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,7 @@ public class NbpPatientController {
     }
 
     @PostMapping("/addPatients")
-    public List<NbpPatient> addPatients(@RequestBody List<NbpPatient> nbpPatients) {
+    public List<NbpPatient> addPatients(@RequestBody @Valid List<NbpPatient> nbpPatients) {
         return nbpPatientService.savePatients(nbpPatients);
     }
 
