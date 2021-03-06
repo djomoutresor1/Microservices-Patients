@@ -37,7 +37,7 @@ public class NbpPatient {
     private String patientPhoneNumber;
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private String patientFixNumber;
- //   private String patientDiseases;
+    private String patientDiseases;
 //    @OneToMany(targetEntity=NbpPatient.class, mappedBy="diseases",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 //    private List<NbpDiseases> diseases;
 
