@@ -69,7 +69,10 @@ public class NbpPatientService {
     public ResponseEntity<Object> NbpUpdatePatientService(int patientId,NbpPatient nbpPatient) {
 
       try{
-          NbpPatient existingPatient = nbpPatientRepository.findById(patientId).orElse(null);
+           nbpPatient.setPatientId(patientId);
+           return new ResponseEntity<Object>(nbpPatientRepository.save(nbpPatient), HttpStatus.OK);
+
+         /* NbpPatient existingPatient = nbpPatientRepository.findById(patientId).orElse(null);
 
           existingPatient.setPatientId(patientId);
           existingPatient.setPatientCode(nbpPatient.getPatientCode());
@@ -87,7 +90,7 @@ public class NbpPatientService {
           existingPatient.setPatientDiseases(nbpPatient.getPatientDiseases());
 
           nbpPatientRepository.save(existingPatient);
-          return new ResponseEntity<Object>(existingPatient, HttpStatus.OK);
+          return new ResponseEntity<Object>(existingPatient, HttpStatus.OK);*/
       }
       catch (Exception ex){
           return new ResponseEntity<Object>(NbpResponse.NBP_PATIENT_UPDATE_PROFIL_NOT_FOUND, HttpStatus.NOT_FOUND);
