@@ -17,30 +17,41 @@ public class NbpPatientService {
     @Autowired
     private NbpPatientRepository nbpPatientRepository;
 
-    //save one patient
-    public NbpPatient savePatient(NbpPatient nbpPatient) {
-        return nbpPatientRepository.save(nbpPatient);
+
+    //save patient
+    public ResponseEntity<Object> NbpSavePatientService(NbpPatient nbpPatient) {
+        try {
+            nbpPatientRepository.save(nbpPatient);
+            return new ResponseEntity<Object>(nbpPatient, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<Object>(NbpResponse.NBP_PATIENT_NOT_FOUND, HttpStatus.NOT_FOUND);
+        }
     }
 
     //save many patient
-    public List<NbpPatient> savePatients(List<NbpPatient> nbpPatients) {
+    public List<NbpPatient> NbpAddPatientsService(List<NbpPatient> nbpPatients) {
         return nbpPatientRepository.saveAll(nbpPatients);
+    }
+    //get all patients
+    public ResponseEntity<Object> NbpGetAllPatientsService() {
+        try {
+            List<NbpPatient> nbpPatients = nbpPatientRepository.findAll();
+            return new ResponseEntity<Object>(nbpPatients, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<Object>(NbpResponse.NBP_PATIENT_NOT_FOUND, HttpStatus.NOT_FOUND);
+        }
     }
 
     //get patients by id
-    public NbpPatient getPatientById(int patientId) {
+    public NbpPatient NbpGetPatientByIdService(int patientId) {
         return nbpPatientRepository.findById(patientId).orElse(null);
     }
 
     //get patient  by PatientName
-    public Optional<NbpPatient> getPatientByPatientName(String patientName) {
+    public List<NbpPatient> NbpGetPatientByNameService(String patientName) {
         return nbpPatientRepository.findByPatientName(patientName);
     }
 
-    //get all patients
-    public List<NbpPatient> getAllPatients() {
-        return nbpPatientRepository.findAll();
-    }
 
     //delete one patient
     public ResponseEntity<Object> NbpPatientDeleteService(int patientId) {
@@ -55,12 +66,12 @@ public class NbpPatientService {
 
 
     //update patient
-    public ResponseEntity<Object> NbpUpdatePatientService(NbpPatient nbpPatient) {
+    public ResponseEntity<Object> NbpUpdatePatientService(int patientId,NbpPatient nbpPatient) {
 
       try{
-          NbpPatient existingPatient = nbpPatientRepository.findById(nbpPatient.getPatientId()).orElse(null);
+          NbpPatient existingPatient = nbpPatientRepository.findById(patientId).orElse(null);
 
-          existingPatient.setPatientId(nbpPatient.getPatientId());
+          existingPatient.setPatientId(patientId);
           existingPatient.setPatientCode(nbpPatient.getPatientCode());
           existingPatient.setPatientName(nbpPatient.getPatientName());
           existingPatient.setPatientLassName(nbpPatient.getPatientLassName());
@@ -73,7 +84,7 @@ public class NbpPatientService {
           existingPatient.setPatientEmail(nbpPatient.getPatientEmail());
           existingPatient.setPatientPhoneNumber(nbpPatient.getPatientPhoneNumber());
           existingPatient.setPatientFixNumber(nbpPatient.getPatientFixNumber());
-  //        existingPatient.setPatientDiseases(nbpPatient.getPatientDiseases());
+          existingPatient.setPatientDiseases(nbpPatient.getPatientDiseases());
 
           nbpPatientRepository.save(existingPatient);
           return new ResponseEntity<Object>(existingPatient, HttpStatus.OK);
