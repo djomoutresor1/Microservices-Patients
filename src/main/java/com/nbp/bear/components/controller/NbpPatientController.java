@@ -18,38 +18,38 @@ public class NbpPatientController {
     private NbpPatientService nbpPatientService;
 
     @PostMapping("/addPatient/{patientId}")
-    public NbpPatient addPatient(@RequestBody NbpPatient nbpPatient) {
-        return nbpPatientService.savePatient(nbpPatient);
+    public ResponseEntity<Object> NbpSavePatient(@RequestBody @Valid NbpPatient nbpPatient ) {
+        return nbpPatientService.NbpSavePatientService(nbpPatient);
     }
 
     @PostMapping("/addPatients")
-    public List<NbpPatient> addPatients(@RequestBody @Valid List<NbpPatient> nbpPatients) {
-        return nbpPatientService.savePatients(nbpPatients);
+    public List<NbpPatient> NbpAddPatients(@RequestBody @Valid List<NbpPatient> nbpPatients) {
+        return nbpPatientService.NbpAddPatientsService(nbpPatients);
     }
-
+    // get all Patients
     @GetMapping("/patients")
-    public List<NbpPatient> findAllPatients() {
-        return nbpPatientService.getAllPatients();
+    public ResponseEntity<Object> NbpGetAllPatients() {
+        return  nbpPatientService.NbpGetAllPatientsService();
     }
 
     @GetMapping("/patientById/{patientId}")
-    public NbpPatient findPatientById(@PathVariable int patientId) {
-        return nbpPatientService.getPatientById(patientId);
+    public NbpPatient NbpGetPatientById(@PathVariable int patientId) {
+        return nbpPatientService.NbpGetPatientByIdService(patientId);
     }
 
     @GetMapping("/patient/{patientName}")
-    public Optional<NbpPatient> findPatientByName(@PathVariable String patientName) {
-        return nbpPatientService.getPatientByPatientName(patientName);
+    public List<NbpPatient> NbpGetPatientByName(@PathVariable String patientName) {
+        return nbpPatientService.NbpGetPatientByNameService(patientName);
     }
 
 
     @PutMapping("/update/{patientId}")
-    public ResponseEntity<Object> updatePatient(@RequestBody NbpPatient nbpPatient){
-        return nbpPatientService.NbpUpdatePatientService(nbpPatient);
+    public ResponseEntity<Object> NbpUpdatePatient(@PathVariable int patientId ,@RequestBody @Valid NbpPatient nbpPatient){
+        return nbpPatientService.NbpUpdatePatientService(patientId,nbpPatient);
     }
 
-    @DeleteMapping("/delete/{PatientId}")
-    public ResponseEntity<Object> deletePatient(@PathVariable int patientId) {
+    @DeleteMapping("/delete/{patientId}")
+    public ResponseEntity<Object> NbpPatientDelete(@PathVariable int patientId) {
         return nbpPatientService.NbpPatientDeleteService(patientId);
     }
 }
