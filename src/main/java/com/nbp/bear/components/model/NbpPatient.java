@@ -5,10 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.math.BigInteger;
 import java.util.List;
 
 @Data
@@ -21,7 +22,7 @@ public class NbpPatient {
     @Id
     @GeneratedValue //(strategy = GenerationType.IDENTITY)
     @NotNull()
-    private Integer patientId;
+    private int patientId;
     private String patientCode;
     private String patientName;
     private String patientLassName;
@@ -29,13 +30,15 @@ public class NbpPatient {
     private int patientAge;
     private String patientSexe;
     private String patientAddress;
-    private Integer patientPostcode;
+    private int patientPostcode;
     private String patientInfoSuppl;
     private String patientEmail;
-    private BigInteger patientPhoneNumber;
-    private BigInteger patientFixNumber;
+    @NumberFormat(style = NumberFormat.Style.NUMBER)
+    private String patientPhoneNumber;
+    @NumberFormat(style = NumberFormat.Style.NUMBER)
+    private String patientFixNumber;
  //   private String patientDiseases;
-    @OneToMany(targetEntity=NbpPatient.class, mappedBy="diseases",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<NbpDiseases> diseases;
+//    @OneToMany(targetEntity=NbpPatient.class, mappedBy="diseases",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<NbpDiseases> diseases;
 
 }
