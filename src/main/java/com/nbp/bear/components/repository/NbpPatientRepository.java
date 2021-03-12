@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface NbpPatientRepository extends JpaRepository<NbpPatient,Integer> {
+public interface NbpPatientRepository extends JpaRepository<NbpPatient, Integer> {
 
     List<NbpPatient> findByPatientName(String patientName);
 }

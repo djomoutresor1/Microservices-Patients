@@ -3,6 +3,7 @@ package com.nbp.bear.components.service;
 import com.nbp.bear.components.constants.NbpResponse;
 import com.nbp.bear.components.model.NbpPatient;
 import com.nbp.bear.components.repository.NbpPatientRepository;
+import com.nbp.bear.components.response.NbpUtilResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class NbpPatientService {
     public ResponseEntity<Object> NbpSavePatientService(NbpPatient nbpPatient) {
         try {
             nbpPatientRepository.save(nbpPatient);
-            return new ResponseEntity<Object>(nbpPatient, HttpStatus.OK);
+            return new ResponseEntity<Object>(new NbpUtilResponse(NbpResponse.NBP_PATIENT_CREATED, nbpPatient), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<Object>(NbpResponse.NBP_PATIENT_NOT_FOUND, HttpStatus.NOT_FOUND);
         }
@@ -32,6 +33,7 @@ public class NbpPatientService {
     public List<NbpPatient> NbpAddPatientsService(List<NbpPatient> nbpPatients) {
         return nbpPatientRepository.saveAll(nbpPatients);
     }
+
     //get all patients
     public ResponseEntity<Object> NbpGetAllPatientsService() {
         try {
@@ -58,7 +60,7 @@ public class NbpPatientService {
         try {
             NbpPatient nbpPatient = nbpPatientRepository.findById(patientId).get();
             nbpPatientRepository.delete(nbpPatient);
-            return new ResponseEntity<Object>(nbpPatient, HttpStatus.OK);
+            return new ResponseEntity<Object>(new NbpUtilResponse(NbpResponse.NBP_PATIENT_DELETED, nbpPatient), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<Object>(NbpResponse.NBP_PATIENT_NOT_FOUND, HttpStatus.NOT_FOUND);
         }
@@ -67,30 +69,10 @@ public class NbpPatientService {
 
     //update patient
     public ResponseEntity<Object> NbpUpdatePatientService(int patientId,NbpPatient nbpPatient) {
-
       try{
            nbpPatient.setPatientId(patientId);
-           return new ResponseEntity<Object>(nbpPatientRepository.save(nbpPatient), HttpStatus.OK);
-
-         /* NbpPatient existingPatient = nbpPatientRepository.findById(patientId).orElse(null);
-
-          existingPatient.setPatientId(patientId);
-          existingPatient.setPatientCode(nbpPatient.getPatientCode());
-          existingPatient.setPatientName(nbpPatient.getPatientName());
-          existingPatient.setPatientLassName(nbpPatient.getPatientLassName());
-          existingPatient.setPatientBirthday(nbpPatient.getPatientBirthday());
-          existingPatient.setPatientAge(nbpPatient.getPatientAge());
-          existingPatient.setPatientSexe(nbpPatient.getPatientSexe());
-          existingPatient.setPatientAddress(nbpPatient.getPatientAddress());
-          existingPatient.setPatientPostcode(nbpPatient.getPatientPostcode());
-          existingPatient.setPatientInfoSuppl(nbpPatient.getPatientInfoSuppl());
-          existingPatient.setPatientEmail(nbpPatient.getPatientEmail());
-          existingPatient.setPatientPhoneNumber(nbpPatient.getPatientPhoneNumber());
-          existingPatient.setPatientFixNumber(nbpPatient.getPatientFixNumber());
-          existingPatient.setPatientDiseases(nbpPatient.getPatientDiseases());
-
-          nbpPatientRepository.save(existingPatient);
-          return new ResponseEntity<Object>(existingPatient, HttpStatus.OK);*/
+           nbpPatientRepository.save(nbpPatient);
+          return new ResponseEntity<Object>(new NbpUtilResponse(NbpResponse.NBP_PATIENT_UPDATE_PROFIL,nbpPatient), HttpStatus.OK);
       }
       catch (Exception ex){
           return new ResponseEntity<Object>(NbpResponse.NBP_PATIENT_UPDATE_PROFIL_NOT_FOUND, HttpStatus.NOT_FOUND);

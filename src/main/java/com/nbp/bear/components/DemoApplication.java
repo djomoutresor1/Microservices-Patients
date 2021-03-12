@@ -7,6 +7,9 @@ import com.nbp.bear.components.repository.NbpPatientRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
 
@@ -20,7 +23,6 @@ public class DemoApplication {
 		NbpPatientRepository patientRepository=ctx.getBean(NbpPatientRepository.class);
 		NbpMaladieRepository maladieRepository=ctx.getBean(NbpMaladieRepository.class);
 		
-		patientRepository.save(new NbpPatient(278,"13-493-6706","Linn Grove", "Grove", "10/27/1981", 1, "F", "723 Sullivan Lane", 32059, "Our Lady of Fatima University", "lgrove0@ask.com", "00347832565", "7905974432","malaria"));
 		patientRepository.save(new NbpPatient(126,"14-949-9034","Hyacinth Ronnay", "Ronnay", "5/16/1950", 2, "F", "4 Paget Circle", 36866, "Trinity College Carmarthen", "hronnay1@time.com", "0062984168544", "4715162932","cholera"));
 		patientRepository.save(new NbpPatient(668,"48-175-5458","Kennett Tomet", "Tomet", "11/27/1976", 3, "M", "75798 Carey Terrace", 34504, "Institute of Teachers Education, Tun Hussein Onn", "ktomet2@twitter.com", "0035512991", "9177032161","cholera"));
 		patientRepository.save(new NbpPatient(497,"18-164-6281","Hillary Headrick", "Headrick", "6/16/1960", 4, "M", "68 Del Sol Parkway", 41797, "Elmira College", "hheadrick3@wunderground.com", "00624527612465", "0078717259","malaria"));
@@ -30,6 +32,18 @@ public class DemoApplication {
 		patientRepository.save(new NbpPatient(137,"48-019-8070","Diane-marie Menlove", "Menlove", "1/24/2009", 8, "F", "4 Oneill Circle", 41687, "Polytechnic Institute of Bari", "dmenlove7@utexas.edu", "+880 714 815 2806", "453121367222","paludisme"));
 		patientRepository.save(new NbpPatient(552,"67-419-0499","Wanda Gilpillan", "Gilpillan", "2/21/1961", 9, "F", "263 Eastlawn Trail", 33920, "California State University, San Marcos", "wgilpillan8@fc2.com", "+382 945 465 3762", "4083993922","mal de tete"));
 		patientRepository.save(new NbpPatient(980,"62-207-5767","Netti Perigeaux", "Perigeaux", "9/2/1983", 10, "F", "3 David Hill", 44882, "Mercer University", "nperigeaux9@jigsy.com", "0376 574 8658", "2957471990","mal d'os"));
+	}
+
+	@Bean
+	WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedMethods("GET", "POST", "PUT", "DELETE").allowedOrigins("*")
+						.allowedHeaders("*");
+			}
+		};
 	}
 
 }
