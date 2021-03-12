@@ -12,42 +12,49 @@ import java.util.Optional;
 
 @RequestMapping("/v1/api")
 @RestController
+@CrossOrigin("*")
 public class NbpPatientController {
 
     @Autowired
     private NbpPatientService nbpPatientService;
 
+    // add one patient
     @PostMapping("/addPatient/{patientId}")
     public ResponseEntity<Object> NbpSavePatient(@RequestBody @Valid NbpPatient nbpPatient ) {
         return nbpPatientService.NbpSavePatientService(nbpPatient);
     }
 
+    // add many patients
     @PostMapping("/addPatients")
     public List<NbpPatient> NbpAddPatients(@RequestBody @Valid List<NbpPatient> nbpPatients) {
         return nbpPatientService.NbpAddPatientsService(nbpPatients);
     }
-    // get all Patients
+
+    // get all patients
     @GetMapping("/patients")
     public ResponseEntity<Object> NbpGetAllPatients() {
         return  nbpPatientService.NbpGetAllPatientsService();
     }
 
+    // get one patient by Id
     @GetMapping("/patientById/{patientId}")
     public NbpPatient NbpGetPatientById(@PathVariable int patientId) {
         return nbpPatientService.NbpGetPatientByIdService(patientId);
     }
 
+    // get one patient by patientName
     @GetMapping("/patient/{patientName}")
     public List<NbpPatient> NbpGetPatientByName(@PathVariable String patientName) {
         return nbpPatientService.NbpGetPatientByNameService(patientName);
     }
 
-
-    @PutMapping("/update/{patientId}")
+    // update one patient
+    @PatchMapping("/update/{patientId}")
     public ResponseEntity<Object> NbpUpdatePatient(@PathVariable int patientId ,@RequestBody @Valid NbpPatient nbpPatient){
         return nbpPatientService.NbpUpdatePatientService(patientId,nbpPatient);
     }
 
+    // delete one patient
     @DeleteMapping("/delete/{patientId}")
     public ResponseEntity<Object> NbpPatientDelete(@PathVariable int patientId) {
         return nbpPatientService.NbpPatientDeleteService(patientId);
