@@ -6,6 +6,7 @@ public class NbpResponse {
         public static final String NBP_PATIENT_DELETED= "Patient deleted successfully.";
         public static final String NBP_PATIENTS_DELETED= "Patients deleted successfully.";
         public static final String NBP_PATIENT_UPDATE_PROFIL = "Patient profil update successfully.";
+        public static final String NBP_PATIENT_ALREADY_EXIST = "This patient profil already exist by his ID, do you want to update it?";
 
         // ERRORS
         public static final String NBP_PATIENT_CREATED_NOT_FOUND = "Error,patient profil not created.";

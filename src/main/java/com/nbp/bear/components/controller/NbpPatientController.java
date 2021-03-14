@@ -19,7 +19,7 @@ public class NbpPatientController {
     private NbpPatientService nbpPatientService;
 
     // add one patient
-    @PostMapping("/addPatient/{patientId}")
+    @PostMapping("/addPatient")
     public ResponseEntity<Object> NbpSavePatient(@RequestBody @Valid NbpPatient nbpPatient ) {
         return nbpPatientService.NbpSavePatientService(nbpPatient);
     }
@@ -49,7 +49,7 @@ public class NbpPatientController {
     }
 
     // update one patient
-    @PatchMapping("/update/{patientId}")
+    @PutMapping("/update/{patientId}")
     public ResponseEntity<Object> NbpUpdatePatient(@PathVariable int patientId ,@RequestBody @Valid NbpPatient nbpPatient){
         return nbpPatientService.NbpUpdatePatientService(patientId,nbpPatient);
     }
