@@ -20,12 +20,17 @@ public class NbpPatientService {
 
 
     //save patient
-    public ResponseEntity<Object> NbpSavePatientService(NbpPatient nbpPatient) {
-        try {
-            nbpPatientRepository.save(nbpPatient);
-            return new ResponseEntity<Object>(new NbpUtilResponse(NbpResponse.NBP_PATIENT_CREATED, nbpPatient), HttpStatus.OK);
-        } catch (Exception ex) {
-            return new ResponseEntity<Object>(NbpResponse.NBP_PATIENT_NOT_FOUND, HttpStatus.NOT_FOUND);
+    public <nbpPatient> ResponseEntity<Object> NbpSavePatientService(NbpPatient nbpPatient) {
+        Optional <nbpPatient> patientById = (Optional<nbpPatient>) nbpPatientRepository.findById(nbpPatient.getPatientId());
+        if (!patientById.isPresent()) {
+            try {
+                nbpPatientRepository.save(nbpPatient);
+                return new ResponseEntity<Object>(new NbpUtilResponse(NbpResponse.NBP_PATIENT_CREATED, nbpPatient), HttpStatus.CREATED);
+            } catch (Exception ex) {
+                return new ResponseEntity<Object>(NbpResponse.NBP_PATIENT_NOT_FOUND, HttpStatus.NOT_FOUND);
+            }
+        }else{
+            return new ResponseEntity<Object>(new NbpUtilResponse(NbpResponse.NBP_PATIENT_ALREADY_EXIST, nbpPatient.getPatientName()), HttpStatus.OK);
         }
     }
 
